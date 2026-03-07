@@ -1,0 +1,58 @@
+[2026-03-07T22:10:08.230+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-07T22:10:08.238+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sip_and_tint_pipeline.run_glue_bronze_to_silver manual__2026-03-07T20:52:46.155780+00:00 [queued]>
+[2026-03-07T22:10:08.240+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sip_and_tint_pipeline.run_glue_bronze_to_silver manual__2026-03-07T20:52:46.155780+00:00 [queued]>
+[2026-03-07T22:10:08.240+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 4
+[2026-03-07T22:10:08.249+0000] {taskinstance.py:2330} INFO - Executing <Task(GlueJobOperator): run_glue_bronze_to_silver> on 2026-03-07 20:52:46.155780+00:00
+[2026-03-07T22:10:08.256+0000] {standard_task_runner.py:63} INFO - Started process 984 to run task
+[2026-03-07T22:10:08.258+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sip_and_tint_pipeline', 'run_glue_bronze_to_silver', 'manual__2026-03-07T20:52:46.155780+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/sip_and_tint_pipeline.py', '--cfg-path', '/tmp/tmp574vd2i4']
+[2026-03-07T22:10:08.263+0000] {standard_task_runner.py:91} INFO - Job 13: Subtask run_glue_bronze_to_silver
+[2026-03-07T22:10:08.302+0000] {task_command.py:426} INFO - Running <TaskInstance: sip_and_tint_pipeline.run_glue_bronze_to_silver manual__2026-03-07T20:52:46.155780+00:00 [running]> on host dedfdfe9c2f3
+[2026-03-07T22:10:08.347+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sip-and-tint' AIRFLOW_CTX_DAG_ID='sip_and_tint_pipeline' AIRFLOW_CTX_TASK_ID='run_glue_bronze_to_silver' AIRFLOW_CTX_EXECUTION_DATE='2026-03-07T20:52:46.155780+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-07T20:52:46.155780+00:00'
+[2026-03-07T22:10:08.348+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-07T22:10:08.354+0000] {glue.py:173} INFO - Initializing AWS Glue Job: beauty-boba-bronze-to-silver. Wait for completion: False
+[2026-03-07T22:10:08.355+0000] {glue.py:364} INFO - Checking if job already exists: beauty-boba-bronze-to-silver
+[2026-03-07T22:10:08.361+0000] {base.py:84} INFO - Using connection ID 'aws_default' for task execution.
+[2026-03-07T22:10:08.361+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='aws_default', conn_type='aws') credentials retrieved from login and password.
+[2026-03-07T22:10:09.312+0000] {glue.py:162} INFO - Iam Role Name: beauty-boba-dev-glue-role
+[2026-03-07T22:10:09.331+0000] {glue.py:409} INFO - Creating job: beauty-boba-bronze-to-silver
+[2026-03-07T22:10:09.343+0000] {glue.py:190} ERROR - Failed to run aws glue job, error: Parameter validation failed:
+Invalid type for parameter Command.ScriptLocation, value: None, type: <class 'NoneType'>, valid types: <class 'str'>
+[2026-03-07T22:10:09.345+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-07T22:10:09.353+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/providers/amazon/aws/operators/glue.py", line 178, in execute
+    glue_job_run = self.glue_job_hook.initialize_job(self.script_args, self.run_job_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/providers/amazon/aws/hooks/glue.py", line 186, in initialize_job
+    job_name = self.get_or_create_glue_job()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/providers/amazon/aws/hooks/glue.py", line 410, in get_or_create_glue_job
+    self.conn.create_job(**config)
+  File "/home/airflow/.local/lib/python3.11/site-packages/botocore/client.py", line 553, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/botocore/client.py", line 962, in _make_api_call
+    request_dict = self._convert_to_request_dict(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/botocore/client.py", line 1036, in _convert_to_request_dict
+    request_dict = self._serializer.serialize_to_request(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/botocore/validate.py", line 381, in serialize_to_request
+    raise ParamValidationError(report=report.generate_report())
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid type for parameter Command.ScriptLocation, value: None, type: <class 'NoneType'>, valid types: <class 'str'>
+[2026-03-07T22:10:09.442+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=sip_and_tint_pipeline, task_id=run_glue_bronze_to_silver, run_id=manual__2026-03-07T20:52:46.155780+00:00, execution_date=20260307T205246, start_date=20260307T221008, end_date=20260307T221009
+[2026-03-07T22:10:09.461+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 13 for task run_glue_bronze_to_silver (Parameter validation failed:
+Invalid type for parameter Command.ScriptLocation, value: None, type: <class 'NoneType'>, valid types: <class 'str'>; 984)
+[2026-03-07T22:10:09.488+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-03-07T22:10:09.529+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-07T22:10:09.530+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

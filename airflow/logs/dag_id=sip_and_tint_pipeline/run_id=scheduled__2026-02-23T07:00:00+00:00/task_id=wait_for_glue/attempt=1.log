@@ -1,0 +1,41 @@
+[2026-03-07T22:24:10.928+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-07T22:24:10.935+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sip_and_tint_pipeline.wait_for_glue scheduled__2026-02-23T07:00:00+00:00 [queued]>
+[2026-03-07T22:24:10.938+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sip_and_tint_pipeline.wait_for_glue scheduled__2026-02-23T07:00:00+00:00 [queued]>
+[2026-03-07T22:24:10.938+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-03-07T22:24:10.943+0000] {taskinstance.py:2330} INFO - Executing <Task(GlueJobSensor): wait_for_glue> on 2026-02-23 07:00:00+00:00
+[2026-03-07T22:24:10.947+0000] {standard_task_runner.py:63} INFO - Started process 1142 to run task
+[2026-03-07T22:24:10.949+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sip_and_tint_pipeline', 'wait_for_glue', 'scheduled__2026-02-23T07:00:00+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/sip_and_tint_pipeline.py', '--cfg-path', '/tmp/tmpfpizrndu']
+[2026-03-07T22:24:10.950+0000] {standard_task_runner.py:91} INFO - Job 22: Subtask wait_for_glue
+[2026-03-07T22:24:10.979+0000] {task_command.py:426} INFO - Running <TaskInstance: sip_and_tint_pipeline.wait_for_glue scheduled__2026-02-23T07:00:00+00:00 [running]> on host dedfdfe9c2f3
+[2026-03-07T22:24:11.023+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sip-and-tint' AIRFLOW_CTX_DAG_ID='sip_and_tint_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_glue' AIRFLOW_CTX_EXECUTION_DATE='2026-02-23T07:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-23T07:00:00+00:00'
+[2026-03-07T22:24:11.023+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-07T22:24:11.029+0000] {glue.py:71} INFO - Poking for job run status :for Glue Job beauty-boba-dev-bronze-to-silver and ID jr_cfd6f599926ee71756905c0494f2f7c1cceed053d30ac0b262c056cd1df3108f
+[2026-03-07T22:24:11.034+0000] {base.py:84} INFO - Using connection ID 'aws_default' for task execution.
+[2026-03-07T22:24:11.034+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='aws_default', conn_type='aws') credentials retrieved from login and password.
+[2026-03-07T22:25:11.328+0000] {glue.py:71} INFO - Poking for job run status :for Glue Job beauty-boba-dev-bronze-to-silver and ID jr_cfd6f599926ee71756905c0494f2f7c1cceed053d30ac0b262c056cd1df3108f
+[2026-03-07T22:25:11.785+0000] {glue.py:80} INFO - ('Exiting Job %s Run State: %s', 'jr_cfd6f599926ee71756905c0494f2f7c1cceed053d30ac0b262c056cd1df3108f', 'FAILED')
+[2026-03-07T22:25:11.785+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-07T22:25:11.807+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/sensors/base.py", line 264, in execute
+    raise e
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/sensors/base.py", line 246, in execute
+    poke_return = self.poke(context)
+                  ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/providers/amazon/aws/sensors/glue.py", line 84, in poke
+    raise AirflowException(job_error_message)
+airflow.exceptions.AirflowException: ('Exiting Job %s Run State: %s', 'jr_cfd6f599926ee71756905c0494f2f7c1cceed053d30ac0b262c056cd1df3108f', 'FAILED')
+[2026-03-07T22:25:11.810+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=sip_and_tint_pipeline, task_id=wait_for_glue, run_id=scheduled__2026-02-23T07:00:00+00:00, execution_date=20260223T070000, start_date=20260307T222410, end_date=20260307T222511
+[2026-03-07T22:25:11.823+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 22 for task wait_for_glue (('Exiting Job %s Run State: %s', 'jr_cfd6f599926ee71756905c0494f2f7c1cceed053d30ac0b262c056cd1df3108f', 'FAILED'); 1142)
+[2026-03-07T22:25:11.848+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-03-07T22:25:11.871+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-07T22:25:11.872+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,23 @@
+[2026-03-07T22:43:52.866+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-07T22:43:52.881+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sip_and_tint_pipeline.wait_for_glue scheduled__2026-02-23T07:00:00+00:00 [queued]>
+[2026-03-07T22:43:52.886+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sip_and_tint_pipeline.wait_for_glue scheduled__2026-02-23T07:00:00+00:00 [queued]>
+[2026-03-07T22:43:52.887+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 4
+[2026-03-07T22:43:52.898+0000] {taskinstance.py:2330} INFO - Executing <Task(GlueJobSensor): wait_for_glue> on 2026-02-23 07:00:00+00:00
+[2026-03-07T22:43:52.913+0000] {standard_task_runner.py:63} INFO - Started process 1347 to run task
+[2026-03-07T22:43:52.917+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sip_and_tint_pipeline', 'wait_for_glue', 'scheduled__2026-02-23T07:00:00+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/sip_and_tint_pipeline.py', '--cfg-path', '/tmp/tmpxe_css92']
+[2026-03-07T22:43:52.922+0000] {standard_task_runner.py:91} INFO - Job 27: Subtask wait_for_glue
+[2026-03-07T22:43:52.989+0000] {task_command.py:426} INFO - Running <TaskInstance: sip_and_tint_pipeline.wait_for_glue scheduled__2026-02-23T07:00:00+00:00 [running]> on host dedfdfe9c2f3
+[2026-03-07T22:43:53.096+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sip-and-tint' AIRFLOW_CTX_DAG_ID='sip_and_tint_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_glue' AIRFLOW_CTX_EXECUTION_DATE='2026-02-23T07:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-23T07:00:00+00:00'
+[2026-03-07T22:43:53.100+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-07T22:43:53.124+0000] {glue.py:71} INFO - Poking for job run status :for Glue Job beauty-boba-dev-bronze-to-silver and ID jr_b3333fc460a58612daaa08f70460ace8aa89abd53697a6d06efe12b16dd51041
+[2026-03-07T22:43:53.142+0000] {base.py:84} INFO - Using connection ID 'aws_default' for task execution.
+[2026-03-07T22:43:53.145+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='aws_default', conn_type='aws') credentials retrieved from login and password.
+[2026-03-07T22:44:53.848+0000] {glue.py:71} INFO - Poking for job run status :for Glue Job beauty-boba-dev-bronze-to-silver and ID jr_b3333fc460a58612daaa08f70460ace8aa89abd53697a6d06efe12b16dd51041
+[2026-03-07T22:45:54.687+0000] {glue.py:71} INFO - Poking for job run status :for Glue Job beauty-boba-dev-bronze-to-silver and ID jr_b3333fc460a58612daaa08f70460ace8aa89abd53697a6d06efe12b16dd51041
+[2026-03-07T22:45:55.618+0000] {glue.py:76} INFO - Exiting Job jr_b3333fc460a58612daaa08f70460ace8aa89abd53697a6d06efe12b16dd51041 Run State: SUCCEEDED
+[2026-03-07T22:45:55.620+0000] {base.py:294} INFO - Success criteria met. Exiting.
+[2026-03-07T22:45:55.620+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-07T22:45:55.698+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=sip_and_tint_pipeline, task_id=wait_for_glue, run_id=scheduled__2026-02-23T07:00:00+00:00, execution_date=20260223T070000, start_date=20260307T224352, end_date=20260307T224555
+[2026-03-07T22:45:55.783+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-07T22:45:55.842+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-07T22:45:55.843+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
