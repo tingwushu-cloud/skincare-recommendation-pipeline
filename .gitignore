@@ -43,3 +43,6 @@ data/*.csv
 # OS
 .DS_Store
 Thumbs.db
+.env
+airflow/logs/
+airflow/plugins/
