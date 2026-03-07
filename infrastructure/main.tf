@@ -15,10 +15,10 @@ terraform {
 
   # S3 backend — stores Terraform state remotely
   backend "s3" {
-    bucket         = "bb-sat-tf-state"
+    bucket         = "js-bb-sat-tf-state"
     key            = "skincare-pipeline/terraform.tfstate"
     region         = "eu-central-1"
-    dynamodb_table = "bb-sat-tf-state-lock"
+    #dynamodb_table = "terraform-locks"
     encrypt        = true
   }
 }
@@ -69,6 +69,8 @@ module "lambda" {
   bucket_name         = var.pipeline_bucket_name
   lambda_role_arn     = module.iam.lambda_role_arn
   dynamodb_table_name = module.dynamodb.table_name
+  ecr_account_id      = "444398957152"
+  aws_region          = "eu-central-1"
 }
 
 module "sns" {
