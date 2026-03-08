@@ -1,6 +1,7 @@
 name: Build and Deploy Lambda Images
 
 on:
+  workflow_dispatch:  # ← add this line to allow manual triggers
   push:
     branches:
       - feature/docker-airflow
