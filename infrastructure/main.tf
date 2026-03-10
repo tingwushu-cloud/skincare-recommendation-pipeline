@@ -99,3 +99,11 @@ module "eventbridge" {
   state_machine_arn    = module.step_functions.state_machine_arn
   eventbridge_role_arn = module.iam.eventbridge_role_arn
 }
+
+module "redshift" {
+  source                  = "./modules/redshift"
+  project                 = var.project
+  environment             = var.environment
+  redshift_admin_password = var.redshift_admin_password
+  redshift_role_arn       = module.iam.redshift_role_arn
+}

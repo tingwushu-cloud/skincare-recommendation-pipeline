@@ -209,3 +209,91 @@ resource "aws_iam_role_policy" "eventbridge_permissions" {
     }]
   })
 }
+
+###############################################################
+# DEVELOPER USER POLICY (skincare-rec-user)
+###############################################################
+resource "aws_iam_user_policy" "developer" {
+  name = "${local.prefix}-developer-policy"
+  user = "skincare-rec-user"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        # Read Lambda configs and logs for debugging
+        Effect = "Allow"
+        Action = [
+          "lambda:GetFunction",
+          "lambda:GetFunctionConfiguration",
+          "lambda:InvokeFunction",
+          "lambda:ListFunctions",
+        ]
+        Resource = "arn:aws:lambda:eu-central-1:${var.account_id}:function:*"
+      },
+      {
+        # Read CloudWatch logs
+        Effect = "Allow"
+        Action = [
+          "logs:DescribeLogGroups",
+          "logs:DescribeLogStreams",
+          "logs:GetLogEvents",
+          "logs:FilterLogEvents",
+          "logs:TailLogEvents",
+          "logs:StartLiveTail",
+        ]
+        Resource = "arn:aws:logs:eu-central-1:${var.account_id}:log-group:*"
+      },
+      {
+        # Read Step Functions executions
+        Effect = "Allow"
+        Action = [
+          "states:ListExecutions",
+          "states:DescribeExecution",
+          "states:GetExecutionHistory",
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+###############################################################
+# REDSHIFT ROLE
+###############################################################
+resource "aws_iam_role" "redshift" {
+  name = "${local.prefix}-redshift-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "redshift.amazonaws.com" }
+      Action    = "sts:AssumeRole"
+    }]
+  })
+
+  tags = { Project = var.project, Environment = var.environment }
+}
+
+resource "aws_iam_role_policy" "redshift_s3" {
+  name = "${local.prefix}-redshift-s3-policy"
+  role = aws_iam_role.redshift.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          "arn:aws:s3:::${var.bucket_name}",
+          "arn:aws:s3:::${var.bucket_name}/*"
+        ]
+      }
+    ]
+  })
+}

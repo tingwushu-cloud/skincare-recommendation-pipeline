@@ -1,0 +1,32 @@
+[0m15:03:45.825382 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1078a8110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1078a0990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107917fd0>]}
+
+
+============================== 15:03:45.828323 | 4836e1a4-fa52-4df6-8b57-ef874a73ba93 ==============================
+[0m15:03:45.828323 [info ] [MainThread]: Running with dbt=1.11.7
+[0m15:03:45.828650 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'static_parser': 'True', 'indirect_selection': 'eager', 'profiles_dir': '/Users/josephshu/.dbt', 'use_colors': 'True', 'target_path': 'None', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'fail_fast': 'False', 'no_print': 'None', 'quiet': 'False', 'partial_parse': 'True', 'log_path': 'logs', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'introspect': 'True', 'log_format': 'default', 'printer_width': '80', 'invocation_command': 'dbt init skincare', 'write_json': 'True', 'empty': 'None', 'version_check': 'True'}
+[0m15:03:45.838457 [debug] [MainThread]: Starter project path: /Users/josephshu/skincare-recommendation-pipeline/.venv/lib/python3.11/site-packages/dbt/include/starter_project
+[0m15:03:45.842289 [info ] [MainThread]: 
+Your new dbt project "skincare" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:03:45.842465 [info ] [MainThread]: Setting up your profile.
+[0m15:03:49.738833 [debug] [MainThread]: Redshift adapter: Setting redshift_connector to ERROR
+[0m15:03:49.739103 [debug] [MainThread]: Redshift adapter: Setting redshift_connector.core to ERROR
+[0m15:05:50.366012 [info ] [MainThread]: Profile skincare written to /Users/josephshu/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m15:05:50.422710 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 124.61843, "process_in_blocks": "0", "process_kernel_time": 0.192348, "process_mem_max_rss": "112689152", "process_out_blocks": "0", "process_user_time": 0.689874}
+[0m15:05:50.445846 [debug] [MainThread]: Command `dbt init` succeeded at 15:05:50.445428 after 124.66 seconds
+[0m15:05:50.484235 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10764d710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x103790490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x103790e90>]}
+[0m15:05:50.519268 [debug] [MainThread]: Flushing usage events
+[0m15:05:51.200271 [debug] [MainThread]: An error was encountered while trying to flush usage events

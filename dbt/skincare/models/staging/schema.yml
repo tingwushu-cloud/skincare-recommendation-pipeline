@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_dm_products
+    description: "Staging layer for DM raw products"
+    columns:
+      - name: product_url
+        tests:
+          - not_null
+          - unique
+      - name: brand
+        tests:
+          - not_null
+      - name: ingredients
+        tests:
+          - not_null
+
+  - name: stg_flaconi_products
+    description: "Staging layer for Flaconi products joined with ingredients"
+    columns:
+      - name: product_url
+        tests:
+          - not_null
+          - unique
+      - name: brand
+        tests:
+          - not_null
+      - name: ingredients
+        tests:
+          - not_null
